@@ -25,4 +25,5 @@ go.work.sum
 .env
 
 kamal-proxy-sidecar
-test/sidecar-test-app
+test/app/sidecar-test-app
+test/endpoint/sidecar-test-endpoint
