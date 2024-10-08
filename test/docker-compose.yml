@@ -1,0 +1,22 @@
+services:
+  sidecar-test-app:
+    build: ./
+    ports:
+      - "8080:8080"
+  
+  proxy:
+    image: basecamp/kamal-proxy
+    container_name: kamal-proxy
+    ports:
+      - "3001:80"
+    restart: unless-stopped
+    depends_on: 
+      - sidecar-test-app
+
+  sidecar:
+    build: ../
+    depends_on:
+      - proxy
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
